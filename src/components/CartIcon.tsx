@@ -21,6 +21,18 @@ const CartIconContainer = styled(Link)`
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   }
+
+  @media (max-width: 768px) {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    
+    &:hover {
+      color: #764ba2;
+      background: rgba(118, 75, 162, 0.1);
+      border-color: rgba(102, 126, 234, 0.5);
+    }
+  }
 `;
 
 const CartIconSVG = styled.svg`
@@ -61,8 +73,6 @@ const CartCount = styled.span`
 const CartIcon: React.FC = () => {
   const { getCartItemCount } = useCart();
   const itemCount = getCartItemCount();
-  
-  console.log('🛒 CartIcon rendered with item count:', itemCount);
 
   return (
     <CartIconContainer to="/cart">

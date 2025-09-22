@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 import { Product as ProductType, SortOption } from '../types';
 
 const HomeContainer = styled.div`
-  padding: 3rem 0;
+  padding: 2rem 0;
 `;
 
 const PageTitle = styled.h1`

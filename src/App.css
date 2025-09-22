@@ -30,7 +30,7 @@ code {
 /* Responsive design */
 @media (max-width: 768px) {
   .App {
-    padding: 0 10px;
+    padding: 0 0px;
   }
 }
 

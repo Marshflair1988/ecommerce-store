@@ -11,6 +11,12 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  @media (max-width: 768px) {
+    background: transparent;
+    box-shadow: none;
+    padding: 1rem 0;
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -18,8 +24,8 @@ const HeaderContent = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 const Logo = styled(Link)`
@@ -28,11 +34,16 @@ const Logo = styled(Link)`
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  margin-right: auto;
   
   &:hover {
     color: #f8f9fa;
     transform: scale(1.05);
     transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -40,6 +51,8 @@ const Nav = styled.nav`
   display: flex;
   gap: 2.5rem;
   align-items: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
 
   @media (max-width: 768px) {
     display: none;
@@ -84,6 +97,7 @@ const MobileActions = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-left: auto;
   }
 `;
 
@@ -106,14 +120,16 @@ const HamburgerButton = styled.button`
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.3);
-    background: transparent;
-    color: white;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
 
     &:hover {
-      background: rgba(255,255,255,0.1);
+      color: #764ba2;
+      background: rgba(118, 75, 162, 0.1);
+      border-color: rgba(102, 126, 234, 0.5);
     }
   }
 `;
@@ -134,7 +150,7 @@ const MobileMenu = styled.div`
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #2c3e50 0%, #764ba2 100%);
     backdrop-filter: blur(6px);
   }
 `;
@@ -161,7 +177,7 @@ const Header: React.FC = () => {
 
   const toggleMobileMenu = (): void => setIsMobileMenuOpen(v => !v);
   const closeMobileMenu = (): void => setIsMobileMenuOpen(false);
-  
+
   return (
     <HeaderContainer>
       <HeaderContent>

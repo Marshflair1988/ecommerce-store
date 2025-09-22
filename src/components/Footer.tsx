@@ -17,6 +17,10 @@ const FooterContainer = styled.footer`
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 0;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -24,6 +28,12 @@ const FooterContent = styled.div`
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const FooterText = styled.p`
@@ -32,15 +42,18 @@ const FooterText = styled.p`
   font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 0.5px;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 0 20px;
+  }
 `;
 
 const Footer: React.FC = () => {
-  console.log('🦶 Footer component rendered');
-  
   return (
     <FooterContainer>
       <FooterContent>
-        <FooterText>&copy; 2024 eCommerce Store. All rights reserved. Made by Marsh Woolgar</FooterText>
+        <FooterText>&copy; eCommerce Store. All rights reserved.</FooterText>
       </FooterContent>
     </FooterContainer>
   );

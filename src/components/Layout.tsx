@@ -19,8 +19,6 @@ const Main = styled.main`
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  console.log('🏗️ Layout component rendered');
-  
   return (
     <LayoutContainer>
       <Header />

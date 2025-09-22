@@ -193,15 +193,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     ? Math.round(((product.price - product.discountedPrice) / product.price) * 100)
     : 0;
 
-  console.log('📦 Product component rendered:', { 
-    id: product.id, 
-    title: product.title, 
-    hasDiscount,
-    discountPercentage: hasDiscount ? `${discountPercentage}%` : 'No discount'
-  });
-
   const handleImageError = (): void => {
-    console.log('❌ Image failed to load for product:', product.title);
     setImageError(true);
   };
 

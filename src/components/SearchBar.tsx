@@ -132,20 +132,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
     if (searchTerm.trim() === '') {
       setFilteredProducts([]);
       setShowResults(false);
-      console.log('🔄 Search cleared, showing all products');
       return;
     }
 
     const filtered = products.filter(product =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    
-    console.log('🔍 Filtering products:', { 
-      searchTerm, 
-      totalProducts: products.length, 
-      filteredCount: filtered.length,
-      filtered: filtered.map(p => ({ id: p.id, title: p.title }))
-    });
     
     setFilteredProducts(filtered);
     setShowResults(filtered.length > 0);
@@ -158,12 +150,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
-    console.log('🔍 Search input changed:', value);
     setSearchTerm(value);
   };
 
   const handleResultClick = (): void => {
-    console.log('👆 Search result clicked, clearing search');
     setSearchTerm('');
     setShowResults(false);
   };
