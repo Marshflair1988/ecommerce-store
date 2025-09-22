@@ -5,36 +5,36 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 ## 🚀 Features
 
 ### Core Functionality
-- **Product Catalog**: Browse products with images, prices, and ratings
-- **Product Details**: Detailed product pages with reviews and tags
-- **Shopping Cart**: Add, remove, and manage cart items
-- **Search & Sort**: Real-time search and sorting by name/price
-- **Checkout Flow**: Complete checkout process with success confirmation
-- **Contact Form**: TypeScript-validated contact form
+**Product Catalog**: Browse products with images, prices, and ratings
+**Product Details**: Detailed product pages with reviews and tags
+**Shopping Cart**: Add, remove, and manage cart items
+**Search & Sort**: Real-time search and sorting by name/price
+**Checkout Flow**: Complete checkout process with success confirmation
+**Contact Form**: TypeScript-validated contact form
 
 ### Technical Features
-- **TypeScript**: Full type safety throughout the application
-- **Responsive Design**: Mobile-first design that works on all devices
-- **Toast Notifications**: Custom-built notification system
-- **State Management**: Context API for cart and toast state
-- **API Integration**: RESTful API integration with error handling
-- **Testing**: Comprehensive test suite with React Testing Library
+**TypeScript**: Full type safety throughout the application
+**Responsive Design**: Mobile-first design that works on all devices
+**Toast Notifications**: Custom-built notification system
+**State Management**: Context API for cart and toast state
+**API Integration**: RESTful API integration with error handling
+**Testing**: Comprehensive test suite with React Testing Library
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19.1.1 with TypeScript
-- **Styling**: Styled-components for component-based styling
-- **Routing**: React Router DOM for navigation
-- **State Management**: React Context API
-- **Testing**: Jest + React Testing Library
-- **API**: Noroff Online Shop API
-- **Build Tool**: Create React App
+**Frontend**: React 19.1.1 with TypeScript
+**Styling**: Styled-components for component-based styling
+**Routing**: React Router DOM for navigation
+**State Management**: React Context API
+**Testing**: Jest + React Testing Library
+**API**: Noroff Online Shop API
+**Build Tool**: Create React App
 
 ## 📦 Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Marshflair1988/ecommerce-store
    cd ecommerce-store
    ```
 
@@ -75,7 +75,7 @@ npm run eject      # Eject from Create React App (one-way operation)
 
 ```
 src/
-├── components/           # Reusable UI components
+├── components/          # Reusable UI components
 │   ├── __tests__/       # Component tests
 │   ├── CartIcon.tsx     # Shopping cart icon
 │   ├── Footer.tsx       # Site footer
@@ -106,38 +106,38 @@ src/
 ## 🔧 Configuration
 
 ### TypeScript
-- **Config**: `tsconfig.json`
-- **Features**: Strict type checking, JSX support, path mapping
-- **Types**: Comprehensive interfaces for all data structures
+**Config**: `tsconfig.json`
+**Features**: Strict type checking, JSX support, path mapping
+**Types**: Comprehensive interfaces for all data structures
 
 ### Jest Testing
-- **Config**: `jest.config.js`
-- **Features**: TypeScript support, React Testing Library, coverage
-- **Setup**: Custom test utilities and mocks
+**Config**: `jest.config.js`
+**Features**: TypeScript support, React Testing Library, coverage
+**Setup**: Custom test utilities and mocks
 
 ### Styling
-- **Method**: Styled-components
-- **Features**: Component-scoped styles, theme support, responsive design
-- **Pattern**: CSS-in-JS with TypeScript integration
+**Method**: Styled-components
+**Features**: Component-scoped styles, theme support, responsive design
+**Pattern**: CSS-in-JS with TypeScript integration
 
 ## 🌐 API Integration
 
 The application integrates with the Noroff Online Shop API:
 
-- **Base URL**: `https://v2.api.noroff.dev/online-shop`
-- **Endpoints**:
-  - `GET /online-shop` - Fetch all products
-  - `GET /online-shop/{id}` - Fetch single product
-- **Error Handling**: Comprehensive error states and user feedback
-- **Type Safety**: Full TypeScript interfaces for API responses
+**Base URL**: `https://v2.api.noroff.dev/online-shop`
+**Endpoints**:
+  `GET /online-shop` - Fetch all products
+  `GET /online-shop/{id}` - Fetch single product
+**Error Handling**: Comprehensive error states and user feedback
+**Type Safety**: Full TypeScript interfaces for API responses
 
 ## 🧪 Testing
 
 ### Test Coverage
-- **Components**: All major components tested
-- **Contexts**: State management logic tested
-- **Pages**: User interactions and form validation tested
-- **Coverage**: 91% test pass rate
+**Components**: All major components tested
+**Contexts**: State management logic tested
+**Pages**: User interactions and form validation tested
+**Coverage**: 91% test pass rate
 
 ### Running Tests
 ```bash
@@ -153,18 +153,18 @@ npm test -- --coverage --watchAll=false
 
 ## 📱 Responsive Design
 
-- **Mobile First**: Designed for mobile devices first
-- **Breakpoints**: Responsive grid layouts and navigation
-- **Touch Friendly**: Optimized for touch interactions
-- **Cross Device**: Works on desktop, tablet, and mobile
+**Mobile First**: Designed for mobile devices first
+**Breakpoints**: Responsive grid layouts and navigation
+**Touch Friendly**: Optimized for touch interactions
+**Cross Device**: Works on desktop, tablet, and mobile
 
 ## 🎨 UI/UX Features
 
-- **Modern Design**: Clean, professional interface
-- **Animations**: Smooth transitions and hover effects
-- **Loading States**: Proper loading indicators
-- **Error Handling**: User-friendly error messages
-- **Accessibility**: Semantic HTML and ARIA labels
+**Modern Design**: Clean, professional interface
+**Animations**: Smooth transitions and hover effects
+**Loading States**: Proper loading indicators
+**Error Handling**: User-friendly error messages
+**Accessibility**: Semantic HTML and ARIA labels
 
 ## 🚀 Deployment
 
@@ -173,48 +173,5 @@ npm test -- --coverage --watchAll=false
 npm run build
 ```
 
-### Deploy to Netlify/Vercel
-1. Build the project
-2. Deploy the `build` folder
-3. Configure environment variables if needed
-
-## 📋 Requirements Met
-
-This project fulfills all requirements for the JavaScript Frameworks course:
-
-- ✅ **API Integration**: RESTful API with proper error handling
-- ✅ **Product Display**: Images, prices, ratings, discount badges
-- ✅ **Product Details**: Complete product information pages
-- ✅ **Search & Sort**: Real-time search and sorting functionality
-- ✅ **Shopping Cart**: Full cart management system
-- ✅ **Checkout Flow**: Complete checkout with success page
-- ✅ **Contact Form**: TypeScript validation with all required fields
-- ✅ **Toast Notifications**: Custom notification system
-- ✅ **Responsive Design**: Mobile-first responsive layout
-- ✅ **TypeScript**: Full type safety throughout
-- ✅ **Testing**: Comprehensive test suite
-
-## 👨‍💻 Development
-
-### Code Quality
-- **TypeScript**: Strict type checking enabled
-- **ESLint**: Code quality and consistency
-- **Prettier**: Code formatting (if configured)
-- **Git Hooks**: Pre-commit validation (if configured)
-
-### Performance
-- **Code Splitting**: Lazy loading for better performance
-- **Image Optimization**: Proper image handling and fallbacks
-- **Bundle Analysis**: Optimized build size
-
-## 📄 License
-
-This project is part of a JavaScript Frameworks course assignment.
-
-## 🤝 Contributing
-
-This is a course project. For questions or issues, please contact the course instructor.
-
----
 
 **Built with ❤️ using React, TypeScript, and modern web technologies.**
