@@ -122,7 +122,7 @@ const HamburgerButton = styled.button`
     border-radius: 8px;
     border: 1px solid rgba(102, 126, 234, 0.3);
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: #764ba2
     cursor: pointer;
     transition: all 0.2s ease;
 

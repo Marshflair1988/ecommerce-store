@@ -34,16 +34,5 @@ code {
   }
 }
 
-/* Button focus styles for accessibility */
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 2px solid #3498db;
-  outline-offset: 2px;
-}
 
-/* Link focus styles for accessibility */
-a:focus {
-  outline: 2px solid #3498db;
-  outline-offset: 2px;
-}
+
