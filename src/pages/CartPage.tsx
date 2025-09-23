@@ -99,6 +99,12 @@ const ItemPrice = styled.div`
   font-size: 1.1rem;
 `;
 
+const ItemSavings = styled.div`
+  color: #27ae60;
+  font-size: 0.9rem;
+  font-weight: 600;
+`;
+
 const QuantityControl = styled.div`
   display: flex;
   align-items: center;
@@ -186,6 +192,14 @@ const TotalAmount = styled.div`
   color: #1a1a1a;
   margin-bottom: 2rem;
   font-family: 'Inter', sans-serif;
+`;
+
+const SavingsAmount = styled.div`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #27ae60;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const CheckoutButton = styled.button`
@@ -332,6 +346,15 @@ const CartPage: React.FC = () => {
           <ItemInfo>
             <ItemTitle>{item.title}</ItemTitle>
             <ItemPrice>${item.discountedPrice || item.price}</ItemPrice>
+            {(() => {
+              const original = item.price;
+              const discounted = item.discountedPrice ?? item.price;
+              const diff = Math.max(0, original - discounted);
+              const lineSavings = diff * item.quantity;
+              return lineSavings > 0 ? (
+                <ItemSavings>You save: ${lineSavings.toFixed(2)}</ItemSavings>
+              ) : null;
+            })()}
           </ItemInfo>
           
           <QuantityControl>
@@ -360,9 +383,26 @@ const CartPage: React.FC = () => {
       ))}
       
       <CartSummary>
-        <TotalAmount>
-          Total: ${getCartTotal().toFixed(2)}
-        </TotalAmount>
+        {(() => {
+          const savingsTotal = items.reduce((sum, item) => {
+            const original = item.price;
+            const discounted = item.discountedPrice ?? item.price;
+            const diff = Math.max(0, original - discounted);
+            return sum + diff * item.quantity;
+          }, 0);
+          return (
+            <>
+              <TotalAmount>
+                Total: ${getCartTotal().toFixed(2)}
+              </TotalAmount>
+              {savingsTotal > 0 && (
+                <SavingsAmount>
+                  You save: ${savingsTotal.toFixed(2)}
+                </SavingsAmount>
+              )}
+            </>
+          );
+        })()}
         <ButtonContainer>
           <CheckoutButton onClick={handleCheckout}>
             Proceed to Checkout
