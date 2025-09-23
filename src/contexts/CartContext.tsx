@@ -53,29 +53,21 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
   
-  console.log('🛒 CartProvider initialized with empty cart');
+  
 
   const addToCart = (product: Product): void => {
-    console.log('🛒 Adding to cart:', { 
-      id: product.id, 
-      title: product.title, 
-      price: product.discountedPrice || product.price 
-    });
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
   const removeFromCart = (productId: string): void => {
-    console.log('🗑️ Removing from cart:', productId);
     dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
   };
 
   const updateQuantity = (productId: string, quantity: number): void => {
-    console.log('📊 Updating quantity:', { productId, quantity });
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id: productId, quantity } });
   };
 
   const clearCart = (): void => {
-    console.log('🧹 Clearing cart');
     dispatch({ type: 'CLEAR_CART' });
   };
 
@@ -84,13 +76,11 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const price = item.discountedPrice || item.price;
       return total + (price * item.quantity);
     }, 0);
-    console.log('💰 Cart total calculated:', total);
     return total;
   };
 
   const getCartItemCount = (): number => {
     const count = state.items.reduce((total, item) => total + item.quantity, 0);
-    console.log('🔢 Cart item count:', count);
     return count;
   };
 

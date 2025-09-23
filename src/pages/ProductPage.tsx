@@ -72,6 +72,21 @@ const ProductDescription = styled.p`
   font-size: 1.1rem;
 `;
 
+const Tags = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
+const Tag = styled.span`
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #e0e7ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+`;
+
 const PriceSection = styled.div`
   display: flex;
   align-items: center;
@@ -202,26 +217,18 @@ const ProductPage: React.FC = () => {
 
   const fetchProduct = useCallback(async (): Promise<void> => {
     try {
-      console.log('🚀 Fetching product details for ID:', id);
       setLoading(true);
       const response = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch product');
       }
       const data: ApiResponse<ProductType> = await response.json();
-      console.log('📦 Product fetched successfully:', { 
-        id: data.data.id, 
-        title: data.data.title, 
-        price: data.data.discountedPrice || data.data.price,
-        hasDiscount: data.data.discountedPrice !== data.data.price
-      });
       setProduct(data.data);
     } catch (err) {
       console.error('❌ Error fetching product:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
-      console.log('✅ Product loading completed');
     }
   }, [id]);
 
@@ -232,11 +239,6 @@ const ProductPage: React.FC = () => {
   const handleAddToCart = (): void => {
     if (!product) return;
     
-    console.log('🛒 Adding product to cart from product page:', { 
-      id: product.id, 
-      title: product.title, 
-      price: product.discountedPrice || product.price 
-    });
     addToCart(product);
     
     addToast({
@@ -303,6 +305,13 @@ const ProductPage: React.FC = () => {
               </>
             )}
           </PriceSection>
+          {product.tags && product.tags.length > 0 && (
+            <Tags aria-label="Product tags">
+              {product.tags.map((t, i) => (
+                <Tag key={`${t}-${i}`}>#{t}</Tag>
+              ))}
+            </Tags>
+          )}
           
           <AddToCartButton onClick={handleAddToCart}>
             Add to Cart

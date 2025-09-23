@@ -88,6 +88,20 @@ const ProductPrice = styled.div`
   flex-wrap: wrap;
 `;
 
+const ProductMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+`;
+
+const Rating = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+`;
+
 const CurrentPrice = styled.span`
   font-size: 1.4rem;
   font-weight: 700;
@@ -229,6 +243,14 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           </>
         )}
       </ProductPrice>
+      <ProductMeta>
+        {typeof product.rating === 'number' && (
+          <Rating aria-label={`Rating ${product.rating} out of 5`}>
+            {'★'.repeat(Math.round(product.rating))}{'☆'.repeat(5 - Math.round(product.rating))}
+            <span>({product.rating.toFixed(1)})</span>
+          </Rating>
+        )}
+      </ProductMeta>
       <ButtonContainer>
         <ViewButton to={`/product/${product.id}`}>
           View Product

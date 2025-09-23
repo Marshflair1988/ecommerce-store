@@ -271,9 +271,7 @@ const CartPage: React.FC = () => {
   const { addToast } = useToast();
 
   const handleQuantityChange = (productId: string, newQuantity: number): void => {
-    console.log('📊 Quantity change requested:', { productId, newQuantity });
     if (newQuantity < 1) {
-      console.log('🗑️ Quantity < 1, removing item from cart');
       removeFromCart(productId);
       addToast({
         type: 'info',
@@ -281,7 +279,6 @@ const CartPage: React.FC = () => {
         duration: 3000
       });
     } else {
-      console.log('✅ Updating quantity in cart');
       updateQuantity(productId, newQuantity);
     }
   };
@@ -296,7 +293,6 @@ const CartPage: React.FC = () => {
   };
 
   const handleCheckout = (): void => {
-    console.log('💳 Proceeding to checkout with cart total:', getCartTotal());
     addToast({
       type: 'success',
       message: 'Order placed successfully! Thank you for your purchase.',

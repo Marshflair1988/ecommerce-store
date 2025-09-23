@@ -49,6 +49,12 @@ const SearchResults = styled.div`
   backdrop-filter: blur(10px);
 `;
 
+const NoResults = styled.div`
+  padding: 1rem;
+  text-align: center;
+  color: #6c757d;
+`;
+
 const SearchResultItem = styled(Link)`
   display: flex;
   align-items: center;
@@ -168,7 +174,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
       />
       {showResults && (
         <SearchResults>
-          {filteredProducts.map(product => (
+          {filteredProducts.length === 0 ? (
+            <NoResults>No matching results</NoResults>
+          ) : filteredProducts.map(product => (
             <SearchResultItem
               key={product.id}
               to={`/product/${product.id}`}

@@ -142,58 +142,40 @@ const ContactPage: React.FC = () => {
   const { addToast } = useToast();
 
   const validateForm = (): boolean => {
-    console.log('🔍 Validating contact form...');
     const newErrors: ContactFormErrors = {};
 
     // Full name validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Full name is required';
-      console.log('❌ Full name validation failed: required');
     } else if (formData.fullName.trim().length < 3) {
       newErrors.fullName = 'Full name must be at least 3 characters long';
-      console.log('❌ Full name validation failed: too short');
-    } else {
-      console.log('✅ Full name validation passed');
     }
 
     // Subject validation
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
-      console.log('❌ Subject validation failed: required');
     } else if (formData.subject.trim().length < 3) {
       newErrors.subject = 'Subject must be at least 3 characters long';
-      console.log('❌ Subject validation failed: too short');
-    } else {
-      console.log('✅ Subject validation passed');
     }
 
     // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-      console.log('❌ Email validation failed: required');
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
         newErrors.email = 'Please enter a valid email address';
-        console.log('❌ Email validation failed: invalid format');
-      } else {
-        console.log('✅ Email validation passed');
       }
     }
 
     // Body validation - FIXED: Changed from 3 to 10 characters minimum
     if (!formData.body.trim()) {
       newErrors.body = 'Message body is required';
-      console.log('❌ Body validation failed: required');
     } else if (formData.body.trim().length < 10) {
       newErrors.body = 'Message body must be at least 10 characters long';
-      console.log('❌ Body validation failed: too short');
-    } else {
-      console.log('✅ Body validation passed');
     }
 
     const isValid = Object.keys(newErrors).length === 0;
-    console.log('📋 Form validation result:', { isValid, errorCount: Object.keys(newErrors).length });
     setErrors(newErrors);
     return isValid;
   };
@@ -216,10 +198,8 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log('📝 Contact form submission attempted');
     
     if (validateForm()) {
-      console.log('✅ Form validation passed, logging form data:', formData);
       
       // Show success message
       setIsSubmitted(true);
@@ -241,10 +221,7 @@ const ContactPage: React.FC = () => {
       
       // Clear errors
       setErrors({});
-      console.log('🎉 Form submitted successfully, form reset');
     } else {
-      console.log('❌ Form validation failed, submission blocked');
-      
       // Show error toast
       addToast({
         type: 'error',
