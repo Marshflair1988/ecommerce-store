@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../contexts/CartContext';
-import { useToast } from '../contexts/ToastContext';
-import styled from 'styled-components';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
+import { useToast } from "../contexts/ToastContext";
+import styled from "styled-components";
 
 const CartContainer = styled.div`
   max-width: 900px;
@@ -32,14 +32,14 @@ const CartItem = styled.div`
   border-radius: 16px;
   margin-bottom: 1.5rem;
   background: white;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   }
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 100px 1fr;
     gap: 1rem;
@@ -52,11 +52,12 @@ const ItemImage = styled.img`
   object-fit: cover;
   border-radius: 4px;
   background-color: #f8f9fa;
-  
-  &:not([src]), &[src=""] {
+
+  &:not([src]),
+  &[src=""] {
     display: none;
   }
-  
+
   @media (max-width: 768px) {
     width: 80px;
     height: 80px;
@@ -74,7 +75,7 @@ const ItemImagePlaceholder = styled.div`
   color: #6c757d;
   font-size: 0.8rem;
   border: 1px dashed #dee2e6;
-  
+
   @media (max-width: 768px) {
     width: 80px;
     height: 80px;
@@ -109,7 +110,7 @@ const QuantityControl = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   @media (max-width: 768px) {
     grid-column: 2;
     justify-self: start;
@@ -128,7 +129,7 @@ const QuantityButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  
+
   &:hover {
     background-color: #7f8c8d;
   }
@@ -149,11 +150,11 @@ const RemoveButton = styled.button`
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #c0392b;
   }
-  
+
   @media (max-width: 768px) {
     grid-column: 2;
     justify-self: end;
@@ -166,8 +167,8 @@ const CartSummary = styled.div`
   border-radius: 20px;
   margin-top: 3rem;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,7 +180,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
@@ -191,7 +192,7 @@ const TotalAmount = styled.div`
   font-weight: 800;
   color: #1a1a1a;
   margin-bottom: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 `;
 
 const SavingsAmount = styled.div`
@@ -213,12 +214,12 @@ const CheckoutButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
   }
-  
+
   &:disabled {
     background: #bdc3c7;
     cursor: not-allowed;
@@ -238,7 +239,7 @@ const ContinueShoppingButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
@@ -256,7 +257,7 @@ const EmptyCart = styled.div`
   min-height: 400px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   margin: 2rem 0;
 `;
 
@@ -284,13 +285,16 @@ const CartPage: React.FC = () => {
   const { items, removeFromCart, updateQuantity, getCartTotal } = useCart();
   const { addToast } = useToast();
 
-  const handleQuantityChange = (productId: string, newQuantity: number): void => {
+  const handleQuantityChange = (
+    productId: string,
+    newQuantity: number,
+  ): void => {
     if (newQuantity < 1) {
       removeFromCart(productId);
       addToast({
-        type: 'info',
-        message: 'Item removed from cart',
-        duration: 3000
+        type: "info",
+        message: "Item removed from cart",
+        duration: 3000,
       });
     } else {
       updateQuantity(productId, newQuantity);
@@ -300,19 +304,19 @@ const CartPage: React.FC = () => {
   const handleRemoveItem = (productId: string, productTitle: string): void => {
     removeFromCart(productId);
     addToast({
-      type: 'info',
+      type: "info",
       message: `${productTitle} removed from cart`,
-      duration: 3000
+      duration: 3000,
     });
   };
 
   const handleCheckout = (): void => {
     addToast({
-      type: 'success',
-      message: 'Order placed successfully! Thank you for your purchase.',
-      duration: 5000
+      type: "success",
+      message: "Order placed successfully! Thank you for your purchase.",
+      duration: 5000,
     });
-    navigate('/checkout-success');
+    navigate("/checkout-success");
   };
 
   if (items.length === 0) {
@@ -321,7 +325,7 @@ const CartPage: React.FC = () => {
         <EmptyCart>
           <EmptyCartTitle>Your cart is empty</EmptyCartTitle>
           <EmptyCartMessage>Add some products to get started!</EmptyCartMessage>
-          <ContinueShoppingButton onClick={() => navigate('/')}>
+          <ContinueShoppingButton onClick={() => navigate("/")}>
             Continue Shopping
           </ContinueShoppingButton>
         </EmptyCart>
@@ -332,17 +336,18 @@ const CartPage: React.FC = () => {
   return (
     <CartContainer>
       <PageTitle>Shopping Cart</PageTitle>
-      
-      {items.map(item => (
+
+      {items.map((item) => (
         <CartItem key={item.id}>
           {item.image?.url ? (
-            <ItemImage src={item.image.url} alt={item.image.alt || item.title} />
+            <ItemImage
+              src={item.image.url}
+              alt={item.image.alt || item.title}
+            />
           ) : (
-            <ItemImagePlaceholder>
-              No Img
-            </ItemImagePlaceholder>
+            <ItemImagePlaceholder>No Img</ItemImagePlaceholder>
           )}
-          
+
           <ItemInfo>
             <ItemTitle>{item.title}</ItemTitle>
             <ItemPrice>${item.discountedPrice || item.price}</ItemPrice>
@@ -356,9 +361,9 @@ const CartPage: React.FC = () => {
               ) : null;
             })()}
           </ItemInfo>
-          
+
           <QuantityControl>
-            <QuantityButton 
+            <QuantityButton
               onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
             >
               -
@@ -367,21 +372,23 @@ const CartPage: React.FC = () => {
               type="number"
               min="1"
               value={item.quantity}
-              onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 1)}
+              onChange={(e) =>
+                handleQuantityChange(item.id, parseInt(e.target.value) || 1)
+              }
             />
-            <QuantityButton 
+            <QuantityButton
               onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
             >
               +
             </QuantityButton>
           </QuantityControl>
-          
+
           <RemoveButton onClick={() => handleRemoveItem(item.id, item.title)}>
             Remove
           </RemoveButton>
         </CartItem>
       ))}
-      
+
       <CartSummary>
         {(() => {
           const savingsTotal = items.reduce((sum, item) => {
@@ -392,9 +399,7 @@ const CartPage: React.FC = () => {
           }, 0);
           return (
             <>
-              <TotalAmount>
-                Total: ${getCartTotal().toFixed(2)}
-              </TotalAmount>
+              <TotalAmount>Total: ${getCartTotal().toFixed(2)}</TotalAmount>
               {savingsTotal > 0 && (
                 <SavingsAmount>
                   You save: ${savingsTotal.toFixed(2)}
@@ -407,7 +412,7 @@ const CartPage: React.FC = () => {
           <CheckoutButton onClick={handleCheckout}>
             Proceed to Checkout
           </CheckoutButton>
-          <ContinueShoppingButton onClick={() => navigate('/')}>
+          <ContinueShoppingButton onClick={() => navigate("/")}>
             Continue Shopping
           </ContinueShoppingButton>
         </ButtonContainer>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
-import Product from '../components/Product';
-import SearchBar from '../components/SearchBar';
-import { Product as ProductType, SortOption } from '../types';
+import React, { useState, useEffect, useCallback } from "react";
+import styled from "styled-components";
+import Product from "../components/Product";
+import SearchBar from "../components/SearchBar";
+import { Product as ProductType, SortOption } from "../types";
 
 const HomeContainer = styled.div`
   padding: 2rem 0;
@@ -69,7 +69,7 @@ const SortSelect = styled.select`
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &:focus {
     outline: none;
     border-color: #667eea;
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [sortOption, setSortOption] = useState<SortOption>('name-asc');
+  const [sortOption, setSortOption] = useState<SortOption>("name-asc");
 
   useEffect(() => {
     fetchProducts();
@@ -99,53 +99,66 @@ const HomePage: React.FC = () => {
   const fetchProducts = async (): Promise<void> => {
     try {
       setLoading(true);
-      const response = await fetch('https://v2.api.noroff.dev/online-shop');
+      const response = await fetch("https://v2.api.noroff.dev/online-shop");
       if (!response.ok) {
-        throw new Error('Failed to fetch products');
+        throw new Error("Failed to fetch products");
       }
       const data = await response.json();
       setProducts(data.data || []);
       setFilteredProducts(data.data || []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
   };
 
-  const sortProducts = useCallback((productsToSort: ProductType[], sortBy: SortOption): ProductType[] => {
-    return [...productsToSort].sort((a, b) => {
-      switch (sortBy) {
-        case 'name-asc':
-          return a.title.localeCompare(b.title);
-        case 'name-desc':
-          return b.title.localeCompare(a.title);
-        case 'price-asc':
-          return (a.discountedPrice || a.price) - (b.discountedPrice || b.price);
-        case 'price-desc':
-          return (b.discountedPrice || b.price) - (a.discountedPrice || a.price);
-        default:
-          return 0;
+  const sortProducts = useCallback(
+    (productsToSort: ProductType[], sortBy: SortOption): ProductType[] => {
+      return [...productsToSort].sort((a, b) => {
+        switch (sortBy) {
+          case "name-asc":
+            return a.title.localeCompare(b.title);
+          case "name-desc":
+            return b.title.localeCompare(a.title);
+          case "price-asc":
+            return (
+              (a.discountedPrice || a.price) - (b.discountedPrice || b.price)
+            );
+          case "price-desc":
+            return (
+              (b.discountedPrice || b.price) - (a.discountedPrice || a.price)
+            );
+          default:
+            return 0;
+        }
+      });
+    },
+    [],
+  );
+
+  const handleSearch = useCallback(
+    (searchResults: ProductType[]) => {
+      if (searchResults.length === 0) {
+        const sortedProducts = sortProducts(products, sortOption);
+        setFilteredProducts(sortedProducts);
+      } else {
+        const sortedResults = sortProducts(searchResults, sortOption);
+        setFilteredProducts(sortedResults);
       }
-    });
-  }, []);
+    },
+    [products, sortOption, sortProducts],
+  );
 
-  const handleSearch = useCallback((searchResults: ProductType[]) => {
-    if (searchResults.length === 0) {
-      const sortedProducts = sortProducts(products, sortOption);
+  const handleSortChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newSortOption = e.target.value as SortOption;
+      setSortOption(newSortOption);
+      const sortedProducts = sortProducts(filteredProducts, newSortOption);
       setFilteredProducts(sortedProducts);
-    } else {
-      const sortedResults = sortProducts(searchResults, sortOption);
-      setFilteredProducts(sortedResults);
-    }
-  }, [products, sortOption, sortProducts]);
-
-  const handleSortChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newSortOption = e.target.value as SortOption;
-    setSortOption(newSortOption);
-    const sortedProducts = sortProducts(filteredProducts, newSortOption);
-    setFilteredProducts(sortedProducts);
-  }, [filteredProducts, sortProducts]);
+    },
+    [filteredProducts, sortProducts],
+  );
 
   if (loading) {
     return (
@@ -166,7 +179,9 @@ const HomePage: React.FC = () => {
   return (
     <HomeContainer>
       <PageTitle>Welcome to Our Store</PageTitle>
-      <PageSubtitle>Discover amazing products with unbeatable prices and exceptional quality</PageSubtitle>
+      <PageSubtitle>
+        Discover amazing products with unbeatable prices and exceptional quality
+      </PageSubtitle>
       <SearchBar products={products} onSearch={handleSearch} />
       <SortContainer>
         <SortLabel htmlFor="sort-select">
@@ -184,7 +199,7 @@ const HomePage: React.FC = () => {
         </SortLabel>
       </SortContainer>
       <ProductsGrid>
-        {filteredProducts.map(product => (
+        {filteredProducts.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </ProductsGrid>

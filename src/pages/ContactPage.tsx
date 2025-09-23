@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { ContactFormData, ContactFormErrors } from '../types';
-import { useToast } from '../contexts/ToastContext';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { ContactFormData, ContactFormErrors } from "../types";
+import { useToast } from "../contexts/ToastContext";
 
 const ContactContainer = styled.div`
   max-width: 700px;
@@ -33,8 +33,8 @@ const ContactForm = styled.form`
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 3rem;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
 const FormGroup = styled.div`
@@ -55,15 +55,15 @@ interface InputProps {
 const Input = styled.input<InputProps>`
   width: 100%;
   padding: 1rem 1.25rem;
-  border: 2px solid ${props => props.hasError ? '#e74c3c' : '#e1e8ed'};
+  border: 2px solid ${(props) => (props.hasError ? "#e74c3c" : "#e1e8ed")};
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
   background: white;
-  
+
   &:focus {
     outline: none;
-    border-color: ${props => props.hasError ? '#e74c3c' : '#667eea'};
+    border-color: ${(props) => (props.hasError ? "#e74c3c" : "#667eea")};
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
   }
@@ -72,17 +72,17 @@ const Input = styled.input<InputProps>`
 const TextArea = styled.textarea<InputProps>`
   width: 100%;
   padding: 1rem 1.25rem;
-  border: 2px solid ${props => props.hasError ? '#e74c3c' : '#e1e8ed'};
+  border: 2px solid ${(props) => (props.hasError ? "#e74c3c" : "#e1e8ed")};
   border-radius: 12px;
   font-size: 1rem;
   min-height: 140px;
   resize: vertical;
   transition: all 0.3s ease;
   background: white;
-  
+
   &:focus {
     outline: none;
-    border-color: ${props => props.hasError ? '#e74c3c' : '#667eea'};
+    border-color: ${(props) => (props.hasError ? "#e74c3c" : "#667eea")};
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
   }
@@ -106,12 +106,12 @@ const SubmitButton = styled.button`
   width: 100%;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
   }
-  
+
   &:disabled {
     background: #bdc3c7;
     cursor: not-allowed;
@@ -131,10 +131,10 @@ const SuccessMessage = styled.div`
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
-    fullName: '',
-    subject: '',
-    email: '',
-    body: ''
+    fullName: "",
+    subject: "",
+    email: "",
+    body: "",
   });
 
   const [errors, setErrors] = useState<ContactFormErrors>({});
@@ -146,33 +146,33 @@ const ContactPage: React.FC = () => {
 
     // Full name validation
     if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
+      newErrors.fullName = "Full name is required";
     } else if (formData.fullName.trim().length < 3) {
-      newErrors.fullName = 'Full name must be at least 3 characters long';
+      newErrors.fullName = "Full name must be at least 3 characters long";
     }
 
     // Subject validation
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
+      newErrors.subject = "Subject is required";
     } else if (formData.subject.trim().length < 3) {
-      newErrors.subject = 'Subject must be at least 3 characters long';
+      newErrors.subject = "Subject must be at least 3 characters long";
     }
 
     // Email validation
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Please enter a valid email address';
+        newErrors.email = "Please enter a valid email address";
       }
     }
 
     // Body validation - FIXED: Changed from 3 to 10 characters minimum
     if (!formData.body.trim()) {
-      newErrors.body = 'Message body is required';
+      newErrors.body = "Message body is required";
     } else if (formData.body.trim().length < 10) {
-      newErrors.body = 'Message body must be at least 10 characters long';
+      newErrors.body = "Message body must be at least 10 characters long";
     }
 
     const isValid = Object.keys(newErrors).length === 0;
@@ -180,53 +180,54 @@ const ContactPage: React.FC = () => {
     return isValid;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ): void => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     // Clear error when user starts typing
     if (errors[name as keyof ContactFormErrors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    
+
     if (validateForm()) {
-      
       // Show success message
       setIsSubmitted(true);
-      
+
       // Show success toast
       addToast({
-        type: 'success',
-        message: 'Thank you for your message! We\'ll get back to you soon.',
-        duration: 5000
+        type: "success",
+        message: "Thank you for your message! We'll get back to you soon.",
+        duration: 5000,
       });
-      
+
       // Reset form
       setFormData({
-        fullName: '',
-        subject: '',
-        email: '',
-        body: ''
+        fullName: "",
+        subject: "",
+        email: "",
+        body: "",
       });
-      
+
       // Clear errors
       setErrors({});
     } else {
       // Show error toast
       addToast({
-        type: 'error',
-        message: 'Please fix the validation errors before submitting.',
-        duration: 4000
+        type: "error",
+        message: "Please fix the validation errors before submitting.",
+        duration: 4000,
       });
     }
   };
@@ -234,15 +235,17 @@ const ContactPage: React.FC = () => {
   return (
     <ContactContainer>
       <PageTitle>Contact Us</PageTitle>
-      <PageSubtitle>Get in touch with us. We'd love to hear from you!</PageSubtitle>
-      
+      <PageSubtitle>
+        Get in touch with us. We'd love to hear from you!
+      </PageSubtitle>
+
       <ContactForm onSubmit={handleSubmit}>
         {isSubmitted && (
           <SuccessMessage>
             Thank you for your message! We'll get back to you soon.
           </SuccessMessage>
         )}
-        
+
         <FormGroup>
           <Label htmlFor="fullName">Full Name *</Label>
           <Input
@@ -298,9 +301,7 @@ const ContactPage: React.FC = () => {
           {errors.body && <ErrorMessage>{errors.body}</ErrorMessage>}
         </FormGroup>
 
-        <SubmitButton type="submit">
-          Send Message
-        </SubmitButton>
+        <SubmitButton type="submit">Send Message</SubmitButton>
       </ContactForm>
     </ContactContainer>
   );

@@ -1,21 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  background: linear-gradient(135deg, #2c3e50 0%,  #764ba2 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #764ba2 100%);
   color: white;
   padding: 3rem 0;
   margin-top: auto;
   position: relative;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
   }
 
   @media (max-width: 768px) {

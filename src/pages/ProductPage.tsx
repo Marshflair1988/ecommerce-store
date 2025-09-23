@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useCart } from '../contexts/CartContext';
-import { useToast } from '../contexts/ToastContext';
-import styled from 'styled-components';
-import { Product as ProductType, ApiResponse } from '../types';
+import React, { useState, useEffect, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
+import { useToast } from "../contexts/ToastContext";
+import styled from "styled-components";
+import { Product as ProductType, ApiResponse } from "../types";
 
 const ProductContainer = styled.div`
   max-width: 1200px;
@@ -15,7 +15,7 @@ const ProductGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -27,14 +27,15 @@ const ProductImage = styled.img`
   height: 500px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
   transition: transform 0.4s ease;
-  
-  &:not([src]), &[src=""] {
+
+  &:not([src]),
+  &[src=""] {
     display: none;
   }
-  
+
   &:hover {
     transform: scale(1.02);
   }
@@ -45,7 +46,7 @@ const ProductImagePlaceholder = styled.div`
   height: 500px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +117,7 @@ const DiscountBadge = styled.span`
 `;
 
 const AddToCartButton = styled.button`
-  background: linear-gradient(135deg,rgb(42, 226, 112) 0%, #7f8c8d 100%);
+  background: linear-gradient(135deg, rgb(42, 226, 112) 0%, #7f8c8d 100%);
   color: white;
   border: none;
   padding: 1.25rem 3rem;
@@ -126,12 +127,12 @@ const AddToCartButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
   }
-  
+
   &:disabled {
     background: #bdc3c7;
     cursor: not-allowed;
@@ -189,7 +190,7 @@ const ErrorMessage = styled.div`
 `;
 
 const BackButton = styled.button`
-  background: linear-gradient(135deg,rgb(42, 226, 112) 0%, #7f8c8d 100%);
+  background: linear-gradient(135deg, rgb(42, 226, 112) 0%, #7f8c8d 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -198,7 +199,7 @@ const BackButton = styled.button`
   margin-bottom: 2rem;
   transition: all 0.3s ease;
   font-weight: 500;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(149, 165, 166, 0.3);
@@ -218,15 +219,17 @@ const ProductPage: React.FC = () => {
   const fetchProduct = useCallback(async (): Promise<void> => {
     try {
       setLoading(true);
-      const response = await fetch(`https://v2.api.noroff.dev/online-shop/${id}`);
+      const response = await fetch(
+        `https://v2.api.noroff.dev/online-shop/${id}`,
+      );
       if (!response.ok) {
-        throw new Error('Failed to fetch product');
+        throw new Error("Failed to fetch product");
       }
       const data: ApiResponse<ProductType> = await response.json();
       setProduct(data.data);
     } catch (err) {
-      console.error('❌ Error fetching product:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.error("❌ Error fetching product:", err);
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -238,13 +241,13 @@ const ProductPage: React.FC = () => {
 
   const handleAddToCart = (): void => {
     if (!product) return;
-    
+
     addToCart(product);
-    
+
     addToast({
-      type: 'success',
+      type: "success",
       message: `${product.title} added to cart!`,
-      duration: 3000
+      duration: 3000,
     });
   };
 
@@ -253,8 +256,10 @@ const ProductPage: React.FC = () => {
   };
 
   const hasDiscount = product && product.discountedPrice < product.price;
-  const discountPercentage = hasDiscount 
-    ? Math.round(((product.price - product.discountedPrice) / product.price) * 100)
+  const discountPercentage = hasDiscount
+    ? Math.round(
+        ((product.price - product.discountedPrice) / product.price) * 100,
+      )
     : 0;
 
   if (loading) {
@@ -268,34 +273,30 @@ const ProductPage: React.FC = () => {
   if (error || !product) {
     return (
       <ProductContainer>
-        <ErrorMessage>Error: {error || 'Product not found'}</ErrorMessage>
+        <ErrorMessage>Error: {error || "Product not found"}</ErrorMessage>
       </ProductContainer>
     );
   }
 
   return (
     <ProductContainer>
-      <BackButton onClick={() => navigate('/')}>
-        ← Back to Store
-      </BackButton>
-      
+      <BackButton onClick={() => navigate("/")}>← Back to Store</BackButton>
+
       <ProductGrid>
         {product.image?.url && !imageError ? (
-          <ProductImage 
-            src={product.image.url} 
+          <ProductImage
+            src={product.image.url}
             alt={product.image.alt || product.title}
             onError={handleImageError}
           />
         ) : (
-          <ProductImagePlaceholder>
-            No Image Available
-          </ProductImagePlaceholder>
+          <ProductImagePlaceholder>No Image Available</ProductImagePlaceholder>
         )}
-        
+
         <ProductInfo>
           <ProductTitle>{product.title}</ProductTitle>
           <ProductDescription>{product.description}</ProductDescription>
-          
+
           <PriceSection>
             <CurrentPrice>${product.discountedPrice}</CurrentPrice>
             {hasDiscount && (
@@ -312,7 +313,7 @@ const ProductPage: React.FC = () => {
               ))}
             </Tags>
           )}
-          
+
           <AddToCartButton onClick={handleAddToCart}>
             Add to Cart
           </AddToCartButton>
@@ -326,7 +327,8 @@ const ProductPage: React.FC = () => {
             <ReviewItem key={index}>
               <ReviewAuthor>{review.username}</ReviewAuthor>
               <ReviewRating>
-                {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                {"★".repeat(review.rating)}
+                {"☆".repeat(5 - review.rating)}
               </ReviewRating>
               <ReviewComment>{review.comment}</ReviewComment>
             </ReviewItem>

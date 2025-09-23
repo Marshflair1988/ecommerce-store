@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Product as ProductType, SearchBarProps } from '../types';
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Product as ProductType, SearchBarProps } from "../types";
 
 const SearchContainer = styled.div`
   position: relative;
@@ -19,14 +19,14 @@ const SearchInput = styled.input`
   outline: none;
   transition: all 0.3s ease;
   background: white;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
   &:focus {
     border-color: #667eea;
     box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
     transform: translateY(-2px);
   }
-  
+
   &::placeholder {
     color: #95a5a6;
     font-weight: 400;
@@ -41,7 +41,7 @@ const SearchResults = styled.div`
   background: white;
   border: none;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   max-height: 400px;
   overflow-y: auto;
   z-index: 1000;
@@ -63,11 +63,11 @@ const SearchResultItem = styled(Link)`
   color: #2c3e50;
   border-bottom: 1px solid #f0f0f0;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: #f8f9fa;
   }
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -80,8 +80,9 @@ const ResultImage = styled.img`
   border-radius: 4px;
   margin-right: 1rem;
   background-color: #f8f9fa;
-  
-  &:not([src]), &[src=""] {
+
+  &:not([src]),
+  &[src=""] {
     display: none;
   }
 `;
@@ -116,35 +117,38 @@ const ResultPrice = styled.div`
 `;
 
 const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [showResults, setShowResults] = useState<boolean>(false);
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setShowResults(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   useEffect(() => {
-    if (searchTerm.trim() === '') {
+    if (searchTerm.trim() === "") {
       setFilteredProducts([]);
       setShowResults(false);
       return;
     }
 
-    const filtered = products.filter(product =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
-    
+
     setFilteredProducts(filtered);
     setShowResults(filtered.length > 0);
   }, [searchTerm, products]);
@@ -160,7 +164,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
   };
 
   const handleResultClick = (): void => {
-    setSearchTerm('');
+    setSearchTerm("");
     setShowResults(false);
   };
 
@@ -176,25 +180,28 @@ const SearchBar: React.FC<SearchBarProps> = ({ products, onSearch }) => {
         <SearchResults>
           {filteredProducts.length === 0 ? (
             <NoResults>No matching results</NoResults>
-          ) : filteredProducts.map(product => (
-            <SearchResultItem
-              key={product.id}
-              to={`/product/${product.id}`}
-              onClick={handleResultClick}
-            >
-              {product.image?.url ? (
-                <ResultImage src={product.image.url} alt={product.image.alt || product.title} />
-              ) : (
-                <ResultImagePlaceholder>
-                  No Img
-                </ResultImagePlaceholder>
-              )}
-              <ResultInfo>
-                <ResultTitle>{product.title}</ResultTitle>
-                <ResultPrice>${product.discountedPrice}</ResultPrice>
-              </ResultInfo>
-            </SearchResultItem>
-          ))}
+          ) : (
+            filteredProducts.map((product) => (
+              <SearchResultItem
+                key={product.id}
+                to={`/product/${product.id}`}
+                onClick={handleResultClick}
+              >
+                {product.image?.url ? (
+                  <ResultImage
+                    src={product.image.url}
+                    alt={product.image.alt || product.title}
+                  />
+                ) : (
+                  <ResultImagePlaceholder>No Img</ResultImagePlaceholder>
+                )}
+                <ResultInfo>
+                  <ResultTitle>{product.title}</ResultTitle>
+                  <ResultPrice>${product.discountedPrice}</ResultPrice>
+                </ResultInfo>
+              </SearchResultItem>
+            ))
+          )}
         </SearchResults>
       )}
     </SearchContainer>

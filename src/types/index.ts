@@ -39,11 +39,11 @@ export interface CartState {
   items: CartItem[];
 }
 
-export type CartAction = 
-  | { type: 'ADD_TO_CART'; payload: Product }
-  | { type: 'REMOVE_FROM_CART'; payload: string }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
-  | { type: 'CLEAR_CART' };
+export type CartAction =
+  | { type: "ADD_TO_CART"; payload: Product }
+  | { type: "REMOVE_FROM_CART"; payload: string }
+  | { type: "UPDATE_QUANTITY"; payload: { id: string; quantity: number } }
+  | { type: "CLEAR_CART" };
 
 // Contact Form Types
 export interface ContactFormData {
@@ -63,13 +63,13 @@ export interface ContactFormErrors {
 // Toast Types
 export interface Toast {
   id: string;
-  type: 'success' | 'error' | 'info' | 'warning';
+  type: "success" | "error" | "info" | "warning";
   message: string;
   duration?: number;
 }
 
 // Sort Types
-export type SortOption = 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc';
+export type SortOption = "name-asc" | "name-desc" | "price-asc" | "price-desc";
 
 // Component Props Types
 export interface ProductProps {
@@ -86,7 +86,7 @@ export interface CartIconProps {
 }
 
 export interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface CartProviderProps {

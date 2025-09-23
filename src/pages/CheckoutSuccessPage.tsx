@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../contexts/CartContext';
-import { useToast } from '../contexts/ToastContext';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
+import { useToast } from "../contexts/ToastContext";
+import styled from "styled-components";
 
 const SuccessContainer = styled.div`
   max-width: 700px;
@@ -24,11 +24,21 @@ const SuccessIcon = styled.div`
   color: white;
   box-shadow: 0 20px 40px rgba(46, 204, 113, 0.3);
   animation: bounce 1s ease-in-out;
-  
+
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-10px); }
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
   }
 `;
 
@@ -64,7 +74,7 @@ const BackToStoreButton = styled.button`
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
   border: none;
   cursor: pointer;
-  
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
@@ -79,18 +89,18 @@ const CheckoutSuccessPage: React.FC = () => {
   useEffect(() => {
     // Clear the cart when the user reaches the checkout success page
     clearCart();
-    
+
     // Show success toast
     addToast({
-      type: 'success',
-      message: 'Order completed successfully! Thank you for your purchase.',
-      duration: 5000
+      type: "success",
+      message: "Order completed successfully! Thank you for your purchase.",
+      duration: 5000,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array to run only once
 
   const handleContinueShopping = (): void => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -98,13 +108,11 @@ const CheckoutSuccessPage: React.FC = () => {
       <SuccessIcon>✓</SuccessIcon>
       <SuccessTitle>Order Successful!</SuccessTitle>
       <SuccessMessage>
-        Thank you for your purchase! Your order has been successfully placed and will be processed shortly.
-        You will receive a confirmation email with your order details.
+        Thank you for your purchase! Your order has been successfully placed and
+        will be processed shortly. You will receive a confirmation email with
+        your order details.
       </SuccessMessage>
-      <BackToStoreButton 
-        onClick={handleContinueShopping}
-        type="button"
-      >
+      <BackToStoreButton onClick={handleContinueShopping} type="button">
         Continue Shopping
       </BackToStoreButton>
     </SuccessContainer>

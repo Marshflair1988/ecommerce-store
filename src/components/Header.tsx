@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import CartIcon from './CartIcon';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
+import styled from "styled-components";
 
 const HeaderContainer = styled.header`
   background: linear-gradient(135deg, #2c3e50 0%, #764ba2 100%);
   color: white;
   padding: 1.5rem 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -35,7 +35,7 @@ const Logo = styled(Link)`
   font-weight: 700;
   letter-spacing: -0.5px;
   margin-right: auto;
-  
+
   &:hover {
     color: #f8f9fa;
     transform: scale(1.05);
@@ -67,14 +67,14 @@ const NavLink = styled(Link)`
   transition: all 0.3s ease;
   font-weight: 500;
   position: relative;
-  
+
   &:hover {
-    background-color: rgba(255,255,255,0.15);
+    background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
-  
+
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -84,7 +84,7 @@ const NavLink = styled(Link)`
     transition: all 0.3s ease;
     transform: translateX(-50%);
   }
-  
+
   &:hover::after {
     width: 80%;
   }
@@ -135,10 +135,33 @@ const HamburgerButton = styled.button`
 `;
 
 const HamburgerIcon: React.FC<{ open: boolean }> = ({ open }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M4 6H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity={open ? 0 : 1}/>
-    <path d="M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M4 6H20"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M4 12H20"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      opacity={open ? 0 : 1}
+    />
+    <path
+      d="M4 18H20"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
@@ -175,13 +198,15 @@ const MobileLinks = styled.div`
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  const toggleMobileMenu = (): void => setIsMobileMenuOpen(v => !v);
+  const toggleMobileMenu = (): void => setIsMobileMenuOpen((v) => !v);
   const closeMobileMenu = (): void => setIsMobileMenuOpen(false);
 
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Logo to="/" onClick={closeMobileMenu}>E-Commerce Store</Logo>
+        <Logo to="/" onClick={closeMobileMenu}>
+          E-Commerce Store
+        </Logo>
         <Nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/contact">Contact</NavLink>
@@ -192,7 +217,7 @@ const Header: React.FC = () => {
         <MobileActions>
           <CartIcon />
           <HamburgerButton
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="site-mobile-menu"
             onClick={toggleMobileMenu}
@@ -205,8 +230,12 @@ const Header: React.FC = () => {
         <MobileMenu id="site-mobile-menu" role="menu">
           <MobileMenuContent>
             <MobileLinks>
-              <NavLink to="/" onClick={closeMobileMenu} role="menuitem">Home</NavLink>
-              <NavLink to="/contact" onClick={closeMobileMenu} role="menuitem">Contact</NavLink>
+              <NavLink to="/" onClick={closeMobileMenu} role="menuitem">
+                Home
+              </NavLink>
+              <NavLink to="/contact" onClick={closeMobileMenu} role="menuitem">
+                Contact
+              </NavLink>
             </MobileLinks>
           </MobileMenuContent>
         </MobileMenu>

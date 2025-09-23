@@ -5,6 +5,7 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 ## 🚀 Features
 
 ### Core Functionality
+
 **Product Catalog**: Browse products with images, prices, and ratings
 **Product Details**: Detailed product pages with reviews and tags
 **Shopping Cart**: Add, remove, and manage cart items
@@ -13,6 +14,7 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 **Contact Form**: TypeScript-validated contact form
 
 ### Technical Features
+
 **TypeScript**: Full type safety throughout the application
 **Responsive Design**: Mobile-first design that works on all devices
 **Toast Notifications**: Custom-built notification system
@@ -33,17 +35,20 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 ## 📦 Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Marshflair1988/ecommerce-store
    cd ecommerce-store
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start the development server**
+
    ```bash
    npm start
    ```
@@ -54,18 +59,21 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 ## 🎯 Available Scripts
 
 ### Development
+
 ```bash
 npm start          # Start development server
 npm run type-check # Run TypeScript type checking
 ```
 
 ### Testing
+
 ```bash
 npm test           # Run tests in watch mode
 npm test -- --watchAll=false  # Run tests once
 ```
 
 ### Production
+
 ```bash
 npm run build      # Build for production
 npm run eject      # Eject from Create React App (one-way operation)
@@ -106,16 +114,19 @@ src/
 ## 🔧 Configuration
 
 ### TypeScript
+
 **Config**: `tsconfig.json`
 **Features**: Strict type checking, JSX support, path mapping
 **Types**: Comprehensive interfaces for all data structures
 
 ### Jest Testing
+
 **Config**: `jest.config.js`
 **Features**: TypeScript support, React Testing Library, coverage
 **Setup**: Custom test utilities and mocks
 
 ### Styling
+
 **Method**: Styled-components
 **Features**: Component-scoped styles, theme support, responsive design
 **Pattern**: CSS-in-JS with TypeScript integration
@@ -126,20 +137,22 @@ The application integrates with the Noroff Online Shop API:
 
 **Base URL**: `https://v2.api.noroff.dev/online-shop`
 **Endpoints**:
-  `GET /online-shop` - Fetch all products
-  `GET /online-shop/{id}` - Fetch single product
+`GET /online-shop` - Fetch all products
+`GET /online-shop/{id}` - Fetch single product
 **Error Handling**: Comprehensive error states and user feedback
 **Type Safety**: Full TypeScript interfaces for API responses
 
 ## 🧪 Testing
 
 ### Test Coverage
+
 **Components**: All major components tested
 **Contexts**: State management logic tested
 **Pages**: User interactions and form validation tested
 **Coverage**: 91% test pass rate
 
 ### Running Tests
+
 ```bash
 # Run all tests
 npm test
@@ -169,9 +182,9 @@ npm test -- --coverage --watchAll=false
 ## 🚀 Deployment
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
-
 
 **Built with ❤️ using React, TypeScript, and modern web technologies.**
