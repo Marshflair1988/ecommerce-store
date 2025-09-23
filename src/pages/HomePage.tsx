@@ -131,18 +131,12 @@ const HomePage: React.FC = () => {
   }, []);
 
   const handleSearch = useCallback((searchResults: ProductType[]) => {
-    console.log('🔍 Search results received:', { 
-      count: searchResults.length, 
-      results: searchResults.map(p => ({ id: p.id, title: p.title }))
-    });
     if (searchResults.length === 0) {
       const sortedProducts = sortProducts(products, sortOption);
       setFilteredProducts(sortedProducts);
-      console.log('🔄 Showing all products (no search results)');
     } else {
       const sortedResults = sortProducts(searchResults, sortOption);
       setFilteredProducts(sortedResults);
-      console.log('✅ Filtering products based on search');
     }
   }, [products, sortOption, sortProducts]);
 
@@ -151,7 +145,6 @@ const HomePage: React.FC = () => {
     setSortOption(newSortOption);
     const sortedProducts = sortProducts(filteredProducts, newSortOption);
     setFilteredProducts(sortedProducts);
-    console.log('🔄 Sort option changed to:', newSortOption);
   }, [filteredProducts, sortProducts]);
 
   if (loading) {
