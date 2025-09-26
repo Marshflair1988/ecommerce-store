@@ -2,7 +2,7 @@
 
 A modern, fully-featured e-commerce application built with React, TypeScript, and styled-components. This project demonstrates advanced React patterns, API integration, state management, and responsive design.
 
-## 🚀 Features
+## Features
 
 ### Core Functionality
 
@@ -22,7 +22,7 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 **API Integration**: RESTful API integration with error handling
 **Testing**: Comprehensive test suite with React Testing Library
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend**: React 19.1.1 with TypeScript
 **Styling**: Styled-components for component-based styling
@@ -32,7 +32,7 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 **API**: Noroff Online Shop API
 **Build Tool**: Create React App
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -54,9 +54,9 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
    ```
 
 4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   Navigate to [http://localhost:3000]
 
-## 🎯 Available Scripts
+## Available Scripts
 
 ### Development
 
@@ -79,7 +79,7 @@ npm run build      # Build for production
 npm run eject      # Eject from Create React App (one-way operation)
 ```
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 src/
@@ -131,7 +131,7 @@ src/
 **Features**: Component-scoped styles, theme support, responsive design
 **Pattern**: CSS-in-JS with TypeScript integration
 
-## 🌐 API Integration
+## API Integration
 
 The application integrates with the Noroff Online Shop API:
 
@@ -142,7 +142,7 @@ The application integrates with the Noroff Online Shop API:
 **Error Handling**: Comprehensive error states and user feedback
 **Type Safety**: Full TypeScript interfaces for API responses
 
-## 🧪 Testing
+## Testing
 
 ### Test Coverage
 
@@ -164,14 +164,14 @@ npm test -- --testPathPattern="Header.test"
 npm test -- --coverage --watchAll=false
 ```
 
-## 📱 Responsive Design
+## Responsive Design
 
 **Mobile First**: Designed for mobile devices first
 **Breakpoints**: Responsive grid layouts and navigation
 **Touch Friendly**: Optimized for touch interactions
 **Cross Device**: Works on desktop, tablet, and mobile
 
-## 🎨 UI/UX Features
+## UI/UX Features
 
 **Modern Design**: Clean, professional interface
 **Animations**: Smooth transitions and hover effects
@@ -179,7 +179,7 @@ npm test -- --coverage --watchAll=false
 **Error Handling**: User-friendly error messages
 **Accessibility**: Semantic HTML and ARIA labels
 
-## 🚀 Deployment
+## Deployment
 
 ### Build for Production
 
@@ -187,4 +187,4 @@ npm test -- --coverage --watchAll=false
 npm run build
 ```
 
-**Built with ❤️ using React, TypeScript, and modern web technologies.**
+**Built with React, Css and TypeScript.**
