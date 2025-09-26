@@ -111,7 +111,7 @@ src/
 └── setupTests.ts        # Test configuration
 ```
 
-## 🔧 Configuration
+### Configuration
 
 ### TypeScript
 
