@@ -233,14 +233,8 @@ describe("CartContext", () => {
   });
 
   test("throws error when useCart is used outside CartProvider", () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = jest.fn();
-
     expect(() => {
       render(<TestComponent />);
     }).toThrow("useCart must be used within a CartProvider");
-
-    console.error = originalError;
   });
 });

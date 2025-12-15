@@ -228,7 +228,6 @@ const ProductPage: React.FC = () => {
       const data: ApiResponse<ProductType> = await response.json();
       setProduct(data.data);
     } catch (err) {
-      console.error("❌ Error fetching product:", err);
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setLoading(false);
@@ -256,11 +255,12 @@ const ProductPage: React.FC = () => {
   };
 
   const hasDiscount = product && product.discountedPrice < product.price;
-  const discountPercentage = hasDiscount
-    ? Math.round(
-        ((product.price - product.discountedPrice) / product.price) * 100,
-      )
-    : 0;
+  const discountPercentage =
+    hasDiscount && product
+      ? Math.round(
+          ((product.price - product.discountedPrice) / product.price) * 100,
+        )
+      : 0;
 
   if (loading) {
     return (
@@ -308,8 +308,8 @@ const ProductPage: React.FC = () => {
           </PriceSection>
           {product.tags && product.tags.length > 0 && (
             <Tags aria-label="Product tags">
-              {product.tags.map((t, i) => (
-                <Tag key={`${t}-${i}`}>#{t}</Tag>
+              {product.tags.map((t) => (
+                <Tag key={t}>#{t}</Tag>
               ))}
             </Tags>
           )}
@@ -323,8 +323,8 @@ const ProductPage: React.FC = () => {
       {product.reviews && product.reviews.length > 0 && (
         <ReviewsSection>
           <ReviewsTitle>Customer Reviews</ReviewsTitle>
-          {product.reviews.map((review, index) => (
-            <ReviewItem key={index}>
+          {product.reviews.map((review) => (
+            <ReviewItem key={review.id}>
               <ReviewAuthor>{review.username}</ReviewAuthor>
               <ReviewRating>
                 {"★".repeat(review.rating)}

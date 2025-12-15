@@ -81,10 +81,6 @@ export interface SearchBarProps {
   onSearch: (results: Product[]) => void;
 }
 
-export interface CartIconProps {
-  // No specific props needed, uses context
-}
-
 export interface LayoutProps {
   children?: React.ReactNode;
 }
