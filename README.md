@@ -11,16 +11,16 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
 **Shopping Cart**: Add, remove, and manage cart items
 **Search & Sort**: Real-time search and sorting by name/price
 **Checkout Flow**: Complete checkout process with success confirmation
-**Contact Form**: TypeScript-validated contact form
+**Contact Form**: TypeScript-validated contact form with inline error messaging
 
 ### Technical Features
 
 **TypeScript**: Full type safety throughout the application
-**Responsive Design**: Mobile-first design that works on all devices
+**Responsive Design**: Mobile-first design that works on all devices, including a dropdown-style mobile navigation menu
 **Toast Notifications**: Custom-built notification system
 **State Management**: Context API for cart and toast state
 **API Integration**: RESTful API integration with error handling
-**Testing**: Comprehensive test suite with React Testing Library
+**Testing**: Comprehensive test suite with React Testing Library and Jest
 
 ## Tech Stack
 
@@ -54,9 +54,8 @@ A modern, fully-featured e-commerce application built with React, TypeScript, an
    ```
 
 4. **Open your browser**
-   Navigate to [http://localhost:3000]
+   Navigate to [http://localhost:3000] (or the next available server)
 
-## Available Scripts
 
 ### Development
 
@@ -83,32 +82,32 @@ npm run eject      # Eject from Create React App (one-way operation)
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── __tests__/       # Component tests
-│   ├── CartIcon.tsx     # Shopping cart icon
-│   ├── Footer.tsx       # Site footer
-│   ├── Header.tsx       # Navigation header
-│   ├── Layout.tsx       # Main layout wrapper
-│   ├── Product.tsx      # Product card component
-│   ├── SearchBar.tsx    # Search functionality
-│   └── ToastContainer.tsx # Toast notifications
-├── contexts/            # React Context providers
-│   ├── __tests__/       # Context tests
-│   ├── CartContext.tsx  # Shopping cart state
-│   └── ToastContext.tsx # Toast notification state
-├── pages/               # Page components
-│   ├── __tests__/       # Page tests
-│   ├── CartPage.tsx     # Shopping cart page
-│   ├── CheckoutSuccessPage.tsx # Order confirmation
-│   ├── ContactPage.tsx  # Contact form
-│   ├── HomePage.tsx     # Product listing
-│   └── ProductPage.tsx  # Product details
-├── types/               # TypeScript type definitions
-│   └── index.ts         # All type definitions
-├── __mocks__/           # Jest mocks
-├── App.tsx              # Main application component
-├── index.tsx            # Application entry point
-└── setupTests.ts        # Test configuration
+├── components/          
+│   ├── __tests__/       
+│   ├── CartIcon.tsx     
+│   ├── Footer.tsx       
+│   ├── Header.tsx       
+│   ├── Layout.tsx       
+│   ├── Product.tsx      
+│   ├── SearchBar.tsx    
+│   └── ToastContainer.tsx 
+├── contexts/            
+│   ├── __tests__/       
+│   ├── CartContext.tsx  
+│   └── ToastContext.tsx 
+├── pages/               
+│   ├── __tests__/       
+│   ├── CartPage.tsx     
+│   ├── CheckoutSuccessPage.tsx 
+│   ├── ContactPage.tsx 
+│   ├── HomePage.tsx     
+│   └── ProductPage.tsx 
+├── types/               
+│   └── index.ts         
+├── __mocks__/           
+├── App.tsx              
+├── index.tsx            
+└── setupTests.ts        
 ```
 
 ### Configuration
@@ -178,6 +177,16 @@ npm test -- --coverage --watchAll=false
 **Loading States**: Proper loading indicators
 **Error Handling**: User-friendly error messages
 **Accessibility**: Semantic HTML and ARIA labels
+
+## Code Quality & Conventions
+
+- **Indentation**: 2 spaces, no tabs, consistent across the codebase
+- **Keys in Lists**: Stable, data-driven React keys (no array indices)
+- **Console Usage**: No `console.log`/`console.error` calls in production code or tests
+- **Types**: Explicit TypeScript interfaces and avoidance of empty object types
+- **JSX**: Self-closing tags for void elements and HTML5-valid markup
+
+These conventions were aligned with tutor feedback to maximize readability, maintainability, and assignment grading criteria.
 
 ## Deployment
 
