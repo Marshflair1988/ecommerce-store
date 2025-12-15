@@ -49,13 +49,13 @@ const Label = styled.label`
 `;
 
 interface InputProps {
-  hasError?: boolean;
+  $hasError?: boolean;
 }
 
 const Input = styled.input<InputProps>`
   width: 100%;
   padding: 1rem 1.25rem;
-  border: 2px solid ${(props) => (props.hasError ? "#e74c3c" : "#e1e8ed")};
+  border: 2px solid ${(props) => (props.$hasError ? "#e74c3c" : "#e1e8ed")};
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -63,7 +63,7 @@ const Input = styled.input<InputProps>`
 
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#e74c3c" : "#667eea")};
+    border-color: ${(props) => (props.$hasError ? "#e74c3c" : "#667eea")};
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
   }
@@ -72,7 +72,7 @@ const Input = styled.input<InputProps>`
 const TextArea = styled.textarea<InputProps>`
   width: 100%;
   padding: 1rem 1.25rem;
-  border: 2px solid ${(props) => (props.hasError ? "#e74c3c" : "#e1e8ed")};
+  border: 2px solid ${(props) => (props.$hasError ? "#e74c3c" : "#e1e8ed")};
   border-radius: 12px;
   font-size: 1rem;
   min-height: 140px;
@@ -82,7 +82,7 @@ const TextArea = styled.textarea<InputProps>`
 
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#e74c3c" : "#667eea")};
+    border-color: ${(props) => (props.$hasError ? "#e74c3c" : "#667eea")};
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     transform: translateY(-1px);
   }
@@ -254,7 +254,7 @@ const ContactPage: React.FC = () => {
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
-            hasError={!!errors.fullName}
+            $hasError={!!errors.fullName}
             placeholder="Enter your full name"
           />
           {errors.fullName && <ErrorMessage>{errors.fullName}</ErrorMessage>}
@@ -268,7 +268,7 @@ const ContactPage: React.FC = () => {
             name="subject"
             value={formData.subject}
             onChange={handleInputChange}
-            hasError={!!errors.subject}
+            $hasError={!!errors.subject}
             placeholder="Enter subject"
           />
           {errors.subject && <ErrorMessage>{errors.subject}</ErrorMessage>}
@@ -282,7 +282,7 @@ const ContactPage: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            hasError={!!errors.email}
+            $hasError={!!errors.email}
             placeholder="Enter your email address"
           />
           {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
@@ -295,7 +295,7 @@ const ContactPage: React.FC = () => {
             name="body"
             value={formData.body}
             onChange={handleInputChange}
-            hasError={!!errors.body}
+            $hasError={!!errors.body}
             placeholder="Enter your message"
           />
           {errors.body && <ErrorMessage>{errors.body}</ErrorMessage>}
