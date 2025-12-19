@@ -1,7 +1,9 @@
+/* eslint-env node */
+
 module.exports = {
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-  moduleNameMapping: {
+  moduleNameMapper: {
     "^react-router-dom$": "<rootDir>/src/__mocks__/react-router-dom.js",
   },
   transform: {

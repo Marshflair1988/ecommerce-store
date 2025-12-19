@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import Product from "../Product";
 import { CartProvider } from "../../contexts/CartContext";
 import { ToastProvider } from "../../contexts/ToastContext";

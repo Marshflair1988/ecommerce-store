@@ -122,7 +122,7 @@ const HamburgerButton = styled.button`
     border-radius: 8px;
     border: 1px solid rgba(102, 126, 234, 0.3);
     background: rgba(102, 126, 234, 0.1);
-    color: #764ba2
+    color: #764ba2;
     cursor: pointer;
     transition: all 0.2s ease;
 
@@ -171,28 +171,33 @@ const MobileMenu = styled.div`
     display: block;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    right: 20px;
+    margin-top: 8px;
     background: linear-gradient(135deg, #2c3e50 0%, #764ba2 100%);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    min-width: 180px;
+    z-index: 1100;
   }
 `;
 
 const MobileMenuContent = styled.div`
   @media (max-width: 768px) {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 12px 20px 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 10px 12px;
   }
 `;
 
 const MobileLinks = styled.div`
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const MobileDivider = styled.div`
+  height: 1px;
+  margin: 6px 0;
+  background: rgba(255, 255, 255, 0.2);
 `;
 
 const Header: React.FC = () => {
@@ -233,6 +238,7 @@ const Header: React.FC = () => {
               <NavLink to="/" onClick={closeMobileMenu} role="menuitem">
                 Home
               </NavLink>
+              <MobileDivider />
               <NavLink to="/contact" onClick={closeMobileMenu} role="menuitem">
                 Contact
               </NavLink>
