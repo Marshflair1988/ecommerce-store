@@ -186,7 +186,8 @@ npm test -- --coverage --watchAll=false
 - **Types**: Explicit TypeScript interfaces and avoidance of empty object types
 - **JSX**: Self-closing tags for void elements and HTML5-valid markup
 
-These conventions were aligned with tutor feedback to maximize readability, maintainability, and assignment grading criteria.
+These conventions were aligned with tutor feedback to maximize readability, maintainability,
+
 
 ## Deployment
 
